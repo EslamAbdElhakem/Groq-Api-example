@@ -1,6 +1,6 @@
 // Replace with your actual GROQ AI API endpoint and token
-const API_ENDPOINT = 'https://api.groq.com/v1/query'; // This is a placeholder URL. Replace with actual endpoint.
-const API_TOKEN = 'your-api-token-here'; // Replace with your actual API token
+const API_ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions'; // This is a placeholder URL. Replace with actual endpoint.
+const API_TOKEN = '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'; // Replace with your actual API token
 
 async function fetchGroqData(query) {
   try {
