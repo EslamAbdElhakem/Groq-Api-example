@@ -1,22 +1,15 @@
-// Default
-import Groq from "groq-sdk";
+// Default export for the app
+import Groq from 'groq-sdk';
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const groq = new Groq();
 
 async function main() {
-  const completion = await groq.chat.completions
-    .create({
-      messages: [
-        {
-          role: "user",
-          content: "Explain the importance of fast language models",
-        },
-      ],
-      model: "mixtral-8x7b-32768",
-    })
-    .then((chatCompletion) => {
-      console.log(chatCompletion.choices[0]?.message?.content || "");
-    });
+  const chatCompletion = await groq.chat.completions.create({
+    messages: [{ role: 'user', content: 'Explain the importance of low latency LLMs' }],
+    model: 'mixtral-8x7b-32768',
+  });
+
+  console.log(chatCompletion.choices[0].message.content);
 }
 
 main();
