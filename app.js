@@ -18,7 +18,6 @@ async function fetchGroqData(query) {
     }
 
     const data = await response.json();
-    console.log('Response Data:', data);
     displayData(data);
   } catch (error) {
     console.error('Error fetching data from GROQ AI API:', error);
@@ -30,13 +29,7 @@ function displayData(data) {
   contentDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
 }
 
-// Example GROQ query
-const exampleQuery = `
-  *[_type == "post"]{
-    title,
-    body
-  }
-`;
-
-// Fetch data using the example query
-fetchGroqData(exampleQuery);
+document.getElementById('sendButton').addEventListener('click', () => {
+  const query = document.getElementById('queryInput').value;
+  fetchGroqData(query);
+});
