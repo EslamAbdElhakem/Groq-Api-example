@@ -1,15 +1,12 @@
 // Default export for the app
 import Groq from 'groq-sdk';
 
-const groq = new Groq();
+const apiKey = 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;
+const groq = new Groq(apiKey);
 
 async function main() {
-  const chatCompletion = await groq.chat.completions.create({
-    messages: [{ role: 'user', content: 'Explain the importance of low latency LLMs' }],
-    model: 'mixtral-8x7b-32768',
-  });
-
-  console.log(chatCompletion.choices[0].message.content);
+  const response = await groq.completion('Hi !');
+  console.log(response);
 }
 
 main();
