@@ -1,6 +1,6 @@
 // Replace with your actual GROQ AI API endpoint and token
 const API_ENDPOINT = 'https://api.groq.com/v1/query'; // This is a placeholder URL. Replace with the actual endpoint.
-const API_TOKEN = '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' ; // Replace with your actual API token
+const API_TOKEN = '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' ; // Replace with your actual API token
 
 async function fetchGroqData(query) {
   try {
