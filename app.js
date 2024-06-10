@@ -1,35 +1,20 @@
-// Replace with your actual GROQ AI API endpoint and token
-const API_ENDPOINT = 'https://api.groq.com/openai/v1'; // This is a placeholder URL. Replace with the actual endpoint.
-const API_TOKEN = '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' ; // Replace with your actual API token
-
-async function fetchGroqData(query) {
-  try {
-    const response = await fetch(API_ENDPOINT, {
+document.getElementById('sendButton').addEventListener('click', async () => {
+    const prompt = document.getElementById('promptInput').value;
+    const response = await fetch('http://localhost:3000/api/groq-completion', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${API_TOKEN}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ query: query })
+      body: JSON.stringify({ prompt })
     });
-
+  
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      const error = await response.text();
+      document.getElementById('content').innerText = `Error: ${error}`;
+      return;
     }
-
+  
     const data = await response.json();
-    displayData(data);
-  } catch (error) {
-    console.error('Error fetching data from GROQ AI API:', error);
-  }
-}
-
-function displayData(data) {
-  const contentDiv = document.getElementById('content');
-  contentDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-}
-
-document.getElementById('sendButton').addEventListener('click', () => {
-  const query = document.getElementById('queryInput').value;
-  fetchGroqData(query);
-});
+    document.getElementById('content').innerText = data.completion;
+  });
+  
